@@ -69,7 +69,7 @@ def run():
 
     if not config.silent_checks:
         print('\033[?25l', end = '')  # disable cursor
-        print_slow('Welcome to terminal minesweeper by Jerie Wang')
+        print_slow('Welcome to terminal minesweeper by Mia Wang')
         if len(sys.argv) == 1:
             print()
             print_slow('No option was specified. Using default settings.')

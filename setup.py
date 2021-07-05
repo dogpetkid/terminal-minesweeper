@@ -6,9 +6,9 @@ setup(
     long_description = open('README.md').read(),
     long_description_content_type = 'text/markdown',
     version = '0.1.0',
-    author = 'Jerie Wang',
-    author_email = 'mail@jerie.wang',
-    url = 'https://github.com/jeriewang/terminal-minesweeper',
+    author = 'Mia Wang',
+    author_email = 'm@mia.wang',
+    url = 'https://github.com/mia1024/terminal-minesweeper',
     python_requires = '>=3.8',
     packages = ['minesweeper'],
     entry_points = {

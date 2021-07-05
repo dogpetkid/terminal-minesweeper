@@ -27,7 +27,7 @@ python3 -m pip install terminal-minesweeper
 Or, to install from source
 
 ```sh
-git clone git@github.com:jeriewang/terminal-minesweeper
+git clone git@github.com:mia1024/terminal-minesweeper
 cd terminal-minesweeper
 python3 setup.py install
 ```
