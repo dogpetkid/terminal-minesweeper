@@ -419,13 +419,13 @@ class GridWidget(Widget):
         whether the program is in keyboard-only mode
         """
         cell_count = len(self.subwidgets)
-        if key in ('up', 'w'):
+        if key in ('up', 'w', 'k'):
             self.selected_cell -= self.board.width
-        elif key in ('down', 's'):
+        elif key in ('down', 's', 'j'):
             self.selected_cell += self.board.width
-        elif key in ('left', 'a'):
+        elif key in ('left', 'a', 'h'):
             self.selected_cell -= 1
-        elif key in ('right', 'd'):
+        elif key in ('right', 'd', 'l'):
             self.selected_cell += 1
         else:
             self.subwidgets[self.selected_cell].keyboard_event(key)
@@ -659,9 +659,9 @@ class RootWidget(Widget):
 
         self.addstr(self.status_y_offset, self.status_x_offset + 11, self.time_taken)
 
-        self.addstr(self.status_y_offset + 3, self.status_x_offset, '          Navigation')
-        self.addstr(self.status_y_offset + 4, self.status_x_offset, '   [W]        [↑]      Move ')
-        self.addstr(self.status_y_offset + 5, self.status_x_offset, '[A][S][D]  [←][↓][→]  cursor')
+        self.addstr(self.status_y_offset + 3, self.status_x_offset, '               Navigation')
+        self.addstr(self.status_y_offset + 4, self.status_x_offset, '   [k]        [W]        [↑]      Move ')
+        self.addstr(self.status_y_offset + 5, self.status_x_offset, '[h][j][l]  [A][S][D]  [←][↓][→]  cursor')
 
         self.addstr(self.status_y_offset + 7, self.status_x_offset, '          Operation')
         self.addstr(self.status_y_offset + 8, self.status_x_offset, 'Reveal cell       [LMB]/[Q] ')
