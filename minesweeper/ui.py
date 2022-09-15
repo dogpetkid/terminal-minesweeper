@@ -693,6 +693,19 @@ class RootWidget(Widget):
                         self.status_x_offset + 10,
                         f'Ｆ × {flags}')
 
+        # untouched squares count
+        untouched = self.board.untouched_count()
+        self.addstr(self.status_y_offset + 21,
+                    self.status_x_offset + 11,
+                    f'☐ × {untouched}'
+                )
+        # percent mine density remaining
+        if (untouched): # prevent divide by zero
+            self.addstr(self.status_y_offset + 22,
+                        self.status_x_offset + 10,
+                        ('💣' if emo else 'X') + f' × {100*flags/untouched:.2f}%'
+                    )
+
         # check winning condition
         if not self.game_over and self.board.check_win():
             self.status.status = '😎'

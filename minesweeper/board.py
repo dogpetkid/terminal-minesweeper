@@ -316,3 +316,9 @@ class Board:
         calculates total number of flaged cells
         """
         return sum(FLAGGED in s.state for s in self.cells)
+
+    def untouched_count(self):
+        """
+        calculates total number of cells not touched by the user
+        """
+        return sum(not(bool((FLAGGED|REVEALED) & s.state)) for s in self.cells)
