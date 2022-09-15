@@ -69,6 +69,7 @@ class FPSMonitor:
         """
         cur_time = time.time()
         self.data = [cur_time + i / (config.framerate or 100) / 100 for i in range(100)]
+        self.target = 20 # target fps
 
     def tick(self):
         """rotates the saves frame rendering time"""
@@ -649,6 +650,7 @@ class RootWidget(Widget):
         except curses.error:
             pass  # sometimes mouse fly around and that's ok
         self.addstr(4, 5, f'FPS: {round(self.monitor.fps, 2):0<5}')
+        self.addstr(5, 5, f'target: {self.monitor.target}')
 
         # adding legends
         if not self.game_over:
@@ -755,6 +757,10 @@ class RootWidget(Widget):
         elif key == ' ':
             if not self.game_over:
                 self.status.status = '😲'
+        elif key == "+":
+            self.monitor.target+= 1 # increase target fps
+        elif key == "-":
+            self.monitor.target = max(1, self.monitor.target-1) # decrease target fps, don't have a 0 fps
 
         for w in self.subwidgets:
             w.dispatch_event('keyboard', key)
@@ -784,6 +790,10 @@ def mainloop(win: curses.window):
                     root.tick()
                     curses.napms(20)
             return
+        # sleep based on target frame rate frame
+        # find the amount of the extra time between frames and sleep it away since it disn't needed to make the target fps
+        extra = 1/root.monitor.target - 1/root.monitor.fps
+        if (extra > 0): curses.napms(int(1000*extra)) # convert seconds ahead to ms ahead
 
 
 def calc_first_frame(height, width):
